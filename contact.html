@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact</title>
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet" href="style.css"
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+    <button id="theme-btn" onclick="toggleTheme()">🌙</button>
+  </nav>
+
+  <section class="hero">
+    <h1>Contact Me</h1>
+    <p>Fill in your details below</p>
+
+    <div class="form-box">
+
+      <div class="input-group">
+        <label>Your Name</label>
+        <input type="text" id="name" placeholder="John Doe" />
+      </div>
+
+      <div class="input-group">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="+1 234 567 8900" />
+      </div>
+
+      <button class="submit-btn" onclick="handleSubmit()">Submit</button>
+
+      <p id="message"></p>
+
+    </div>
+  </section>
+
+  <script>
+    function handleSubmit() {
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const message = document.getElementById("message");
+
+      // Check if fields are empty
+      if (name === "" || phone === "") {
+        message.style.color = "red";
+        message.textContent = "❌ Please fill in both fields!";
+        return;
+      }
+
+      // Check phone is numbers only
+      if (isNaN(phone.replace(/[\s+\-]/g, ""))) {
+        message.style.color = "red";
+        message.textContent = "❌ Phone number is not valid!";
+        return;
+      }
+
+      // Success!
+      message.style.color = "#7c3aed";
+      message.textContent = `✅ Thanks ${name}! We'll call you at ${phone}.`;
+
+      // Clear the inputs
+      document.getElementById("name").value = "";
+      document.getElementById("phone").value = "";
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+      const btn = document.getElementById('theme-btn');
+      btn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
+    }
+  </script>
+
+</body>
+</html>
