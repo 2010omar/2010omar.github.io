@@ -14,8 +14,22 @@
   </nav>
 
   <section class="hero">
-    <h1>Hi, I'm [Your Name] 👋</h1>
+    <h1 id="typed-text"></h1>
     <p>I'm learning to build websites.</p>
   </section>
+  <script>
+  const text = "Hi, I'm omar 👋";
+  let i = 0;
+
+  function typeWriter() {
+    if (i < text.length) {
+      document.getElementById("typed-text").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 80);
+    }
+  }
+
+  typeWriter();
+  </script>
 </body>
 </html>
