@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: __dirname + '/.env' });
 const express = require('express');
 const sql = require('mssql');
 const cors = require('cors');
@@ -11,29 +11,22 @@ const config = {
   server: 'localhost',
   port: 1433,
   database: 'ContactsDB',
-  user: 'myapp',
+  user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   options: {
-    instanceName: 'SQLEXPRESS',
     trustServerCertificate: true,
   }
 };
 
-// Test route
 app.get('/', (req, res) => {
   res.send('Backend is running! ✅');
 });
 
-// Save contact route
 app.post('/contact', async (req, res) => {
   const { name, phone } = req.body;
-
   try {
     await sql.connect(config);
-    await sql.query`
-      INSERT INTO Contacts (name, phone) 
-      VALUES (${name}, ${phone})
-    `;
+    await sql.query`INSERT INTO Contacts (name, phone) VALUES (${name}, ${phone})`;
     res.json({ success: true, message: 'Contact saved!' });
   } catch (err) {
     console.error(err);
