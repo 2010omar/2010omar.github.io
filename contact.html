@@ -39,39 +39,43 @@
   </section>
 
   <script>
-    function handleSubmit() {
-      const name = document.getElementById("name").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const message = document.getElementById("message");
+    async function handleSubmit() {
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const message = document.getElementById("message");
 
-      // Check if fields are empty
-      if (name === "" || phone === "") {
-        message.style.color = "red";
-        message.textContent = "❌ Please fill in both fields!";
-        return;
-      }
+  // Check if fields are empty
+  if (name === "" || phone === "") {
+    message.style.color = "red";
+    message.textContent = "❌ Please fill in both fields!";
+    return;
+  }
 
-      // Check phone is numbers only
-      if (isNaN(phone.replace(/[\s+\-]/g, ""))) {
-        message.style.color = "red";
-        message.textContent = "❌ Phone number is not valid!";
-        return;
-      }
+  // Send data to backend
+  try {
+    const response = await fetch("http://localhost:3000/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, phone })
+    });
 
-      // Success!
+    const result = await response.json();
+
+    if (result.success) {
       message.style.color = "#7c3aed";
-      message.textContent = `✅ Thanks ${name}! We'll call you at ${phone}.`;
-
-      // Clear the inputs
+      message.textContent = `✅ Thanks ${name}! Your info was saved.`;
       document.getElementById("name").value = "";
       document.getElementById("phone").value = "";
+    } else {
+      message.style.color = "red";
+      message.textContent = "❌ Something went wrong!";
     }
 
-    function toggleTheme() {
-      document.body.classList.toggle('light');
-      const btn = document.getElementById('theme-btn');
-      btn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
-    }
+  } catch (err) {
+    message.style.color = "red";
+    message.textContent = "❌ Could not reach the server!";
+  }
+}
   </script>
 
 </body>
