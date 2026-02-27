@@ -1,2 +1,3 @@
 node_modules/
 mydb.sql
+backend/.env

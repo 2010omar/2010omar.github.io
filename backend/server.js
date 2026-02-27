@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const sql = require('mssql');
 const cors = require('cors');
@@ -11,7 +12,7 @@ const config = {
   port: 1433,
   database: 'ContactsDB',
   user: 'myapp',
-  password: '6699',
+  password: process.env.DB_PASSWORD,
   options: {
     instanceName: 'SQLEXPRESS',
     trustServerCertificate: true,
