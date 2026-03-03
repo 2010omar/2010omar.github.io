@@ -173,6 +173,14 @@ nav a:hover {
     font-size: 14px;
   }
 
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    padding: 40px 16px;
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
+
   .hero h1 {
     font-size: 28px;
   }
@@ -183,16 +191,18 @@ nav a:hover {
 
   .form-box {
     padding: 24px 16px;
-    width: 90%;
+    width: 95%;
+    max-width: 100%;
   }
 
   .input-group input {
-    font-size: 14px;
+    font-size: 16px;
+    padding: 14px 16px;
   }
 
   .submit-btn {
-    font-size: 14px;
-    padding: 10px;
+    font-size: 16px;
+    padding: 14px;
   }
 
   #theme-btn {
