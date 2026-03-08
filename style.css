@@ -46,6 +46,21 @@ nav a:hover {
   padding: 40px 20px;
 }
 
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+  animation: fadeIn 0.8s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-pic:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(124, 58, 237, 0.5);
+}
+
 .hero h1 {
   font-size: 48px;
   animation: fadeIn 0.8s ease forwards;
@@ -117,7 +132,7 @@ nav a:hover {
   border: 1px solid #333;
   background: #0f0f0f;
   color: white;
-  font-size: 16px;   /* 16px prevents iOS auto-zoom */
+  font-size: 16px;
   outline: none;
   transition: border 0.3s ease;
   width: 100%;
@@ -160,12 +175,17 @@ nav a:hover {
     width: 70%;
     max-width: 480px;
   }
+
+  .profile-pic {
+    width: 180px;
+    height: 180px;
+  }
 }
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
   html {
-    font-size: 16px; /* keep at 16 — never go below */
+    font-size: 16px;
   }
 
   nav {
@@ -180,14 +200,20 @@ nav a:hover {
   }
 
   .hero {
-    min-height: 100svh;   /* svh = safe viewport height on mobile */
+    min-height: 100svh;
     padding: 48px 20px 40px;
     justify-content: center;
     gap: 20px;
   }
 
+  .profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 16px;
+  }
+
   .hero h1 {
-    font-size: clamp(28px, 8vw, 42px); /* scales smoothly with screen width */
+    font-size: clamp(28px, 8vw, 42px);
   }
 
   .hero p {
@@ -201,7 +227,6 @@ nav a:hover {
     padding: 20px;
   }
 
-  /* Contact section full-width on mobile */
   .form-box {
     width: 92%;
     max-width: 100%;
@@ -216,7 +241,7 @@ nav a:hover {
 
   .input-group input,
   .input-group textarea {
-    font-size: 16px;   /* must stay 16px — prevents iOS zoom-on-focus */
+    font-size: 16px;
     padding: 14px 14px;
   }
 
@@ -234,6 +259,12 @@ nav a:hover {
 @media (max-width: 380px) {
   nav a {
     font-size: 13px;
+  }
+
+  .profile-pic {
+    width: 140px;
+    height: 140px;
+    border-radius: 14px;
   }
 
   .hero h1 {
